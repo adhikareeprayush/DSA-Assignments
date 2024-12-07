@@ -10,7 +10,7 @@ double evaluate_postfix(string postfix_expression) {
     vector<string> inp1;
     string temp = "";
 
-    // Splitting the string into tokens
+    // postfix expression = "3 14 - 5 +"
     for (int i = 0; i < postfix_expression.size(); i++) {
         if (postfix_expression[i] == ' ') {
             if (!temp.empty()) { 
@@ -57,7 +57,16 @@ double evaluate_postfix(string postfix_expression) {
 }
 
 int main() {
-    string postfix_expression = "3 4 2 * 1 5 - 2 3 ^ ^ / +";
+    string postfix_expression;
+    cout << "Enter the postfix expression: ";
+    getline(cin, postfix_expression);
     cout << "Result: " << evaluate_postfix(postfix_expression) << endl;
     return 0;
 }
+
+
+// "3 14 - 5 +" {'3', '14', '-', '5' , '+'}
+// 3 - 4 = -1 
+// -1 5 +
+// -1 + 5 = 4
+// 4 to be returned
