@@ -20,6 +20,7 @@ string convertToPostfix(string infix_expression) {
     vector<string> tokens;
     string temp = "";
 
+    // (3 + 4) * 43 - 12 
     for (int i = 0; i < infix_expression.size(); i++) {
         if (infix_expression[i] == ' ') {
             if (!temp.empty()) { 
@@ -39,6 +40,11 @@ string convertToPostfix(string infix_expression) {
     if (!temp.empty()) {
         tokens.push_back(temp);
     }
+
+    // Debugging print the tokens
+    // for(string token : tokens) {
+    //     cout << token << " ";
+    // }
 
     stack<string> opStack;   
     vector<string> postfix;
