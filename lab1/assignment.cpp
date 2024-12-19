@@ -8,7 +8,7 @@ using namespace std;
 int precedence(string op) {
     if (op == "^") return 3;
     if (op == "*" || op == "/") return 2;
-    if (op == "+" || op == "-") return 1;
+    if (op == "+" || op == "-") return 1; 
     return 0;
 }
 
@@ -26,6 +26,12 @@ string convertToPostfix(string infix_expression) {
                 tokens.push_back(temp);
                 temp = "";
             }
+        } else if (infix_expression[i] == '(' || infix_expression[i] == ')') {
+            if (!temp.empty()) {
+                tokens.push_back(temp);
+                temp = "";
+            }
+            tokens.push_back(string(1, infix_expression[i]));
         } else {
             temp += infix_expression[i];
         }
@@ -35,27 +41,27 @@ string convertToPostfix(string infix_expression) {
     }
 
     stack<string> opStack;   
-    vector<string> postfix; 
+    vector<string> postfix;
 
     for (string token : tokens) {
         if (isOperator(token)) {
-            while (!opStack.empty() && precedence(opStack.top()) >= precedence(token)) {
+            while (!opStack.empty() && precedence(opStack.top()) >= precedence(token) && opStack.top() != "(") {
                 postfix.push_back(opStack.top());
                 opStack.pop();
             }
-            opStack.push(token);
+            opStack.push(token); 
         } else if (token == "(") {
-            opStack.push(token);
+            opStack.push(token); 
         } else if (token == ")") {
             while (!opStack.empty() && opStack.top() != "(") {
                 postfix.push_back(opStack.top());
                 opStack.pop();
             }
             if (!opStack.empty() && opStack.top() == "(") {
-                opStack.pop();
+                opStack.pop(); 
             }
         } else {
-            postfix.push_back(token);
+            postfix.push_back(token); 
         }
     }
 
