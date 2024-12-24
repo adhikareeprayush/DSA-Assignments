@@ -1,6 +1,7 @@
-.idea
-.vscode
 
-*.exe
-./*.exe
-./**/*.exe
+*
+
+!*.c
+!*.cpp
+!*.h
+!*.py
