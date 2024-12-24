@@ -1,15 +1,15 @@
 #include <stdio.h>
 
-void toh(int n, char from, char to, char aux)
+void toh(int n, char src, char dst, char temp)
 {
     if (n == 1)
     {
-        printf("Move disk 1 from %c to %c\n", from, to);
+        printf("Move disk 1 src %c dst %c\n", src, dst);
         return;
     }
-    toh(n - 1, from, aux, to);
-    printf("Move disk %d from %c to %c\n", n, from, to);
-    toh(n - 1, aux, to, from);
+    toh(n - 1, src, temp, dst);
+    printf("Move disk %d src %c dst %c\n", n, src, dst);
+    toh(n - 1, temp, dst, src);
 }
 
 int main()
