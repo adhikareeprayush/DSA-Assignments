@@ -1,49 +1,60 @@
 #include "stdio.h"
 #include "stdbool.h"
-#define Max 5
+#define MAX 5
 
-struct CircularQueue {
+struct CircularQueue
+{
     int FRONT, REAR;
-    int Data[Max];
+    int Data[MAX];
 };
 
-bool isFull(struct CircularQueue *Q) {
-    if ((Q->REAR + 1) % Max == Q->FRONT) {
+bool isFull(struct CircularQueue *Q)
+{
+    if ((Q->REAR + 1) % MAX == Q->FRONT)
+    {
         return true;
     }
     return false;
 }
 
-
-bool isEmpty (struct CircularQueue *Q) {
-    if(Q->REAR == Q->FRONT) {
+bool isEmpty(struct CircularQueue *Q)
+{
+    if (Q->REAR == Q->FRONT)
+    {
         return true;
     }
     return false;
 }
 
-void enqueue(struct CircularQueue *Q, int add) {
-    if (isFull(Q)) {
+void enqueue(struct CircularQueue *Q, int add)
+{
+    if (isFull(Q))
+    {
         printf("Queue is full\n");
-    } else {
+    }
+    else
+    {
         Q->Data[Q->REAR] = add;
-        printf("Added %d to the queue\n", Q->Data[Q->REAR]); 
-        Q->REAR = (Q->REAR + 1) % Max;
+        printf("Added %d to the queue\n", Q->Data[Q->REAR]);
+        Q->REAR = (Q->REAR + 1) % MAX;
     }
 }
 
-
-void dequeue (struct CircularQueue *Q) {
-    if(isEmpty(Q)) {
+void dequeue(struct CircularQueue *Q)
+{
+    if (isEmpty(Q))
+    {
         printf("Queue is Empty\n");
-    } else {
+    }
+    else
+    {
         printf("Removed %d from the queue\n", Q->Data[Q->FRONT]);
-        Q->FRONT = (Q->FRONT + 1) % Max;
+        Q->FRONT = (Q->FRONT + 1) % MAX;
     }
 }
 
-
-int main() {
+int main()
+{
     struct CircularQueue Q;
     Q.FRONT = 0;
     Q.REAR = 0;
