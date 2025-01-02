@@ -50,6 +50,18 @@ void front (struct Queue *Q) {
     }
 }
 
+void display (struct Queue *Q) {
+    if(isEmpty(Q)) {
+        printf("Queue is Empty\n");
+    } else {
+        printf("Queue elements are: ");
+        for(int i = Q->FRONT; i <= Q->REAR; i++) {
+            printf("%d ", Q->Data[i]);
+        }
+        printf("\n");
+    }
+}
+
 int main() {
     struct Queue Q;
     Q.FRONT = 0;
@@ -57,8 +69,16 @@ int main() {
     enqueue(&Q, 1);
     enqueue(&Q, 2);
     enqueue(&Q, 3);
-    dequeue(&Q);
+    front(&Q);
+    display(&Q);
     dequeue(&Q);
     front(&Q);
+    display(&Q);
+    dequeue(&Q);
+    front(&Q);
+    display(&Q);
+    dequeue(&Q);
+    front(&Q);
+    display(&Q);
     return 0;
 }
